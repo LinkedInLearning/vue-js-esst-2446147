@@ -1,0 +1,57 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background: #e6e6e7;
+  margin: 0;
+}
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  max-width: 60rem;
+  width: 90%;
+  margin: auto;
+  flex: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: white;
+}
+@media (min-width: 500px) {
+  header {
+    flex-direction: row;
+  }
+}
+.nav-bar {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover, a:focus, a:active, .router-link-active {
+  color: brown;
+}
+
+.nav__link {
+  display: block;
+  padding: 1rem;
+}
