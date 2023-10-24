@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<div id="app">
+    <p>Computed: {{random}}</p>
+    <p>Computed: {{random}}</p>
+    <p>Computed: {{random}}</p>
+    <p>Computed: {{random}}</p>
+    <hr>
+    <p>Method: {{randomMethod()}}</p>
+    <p>Method: {{randomMethod()}}</p>
+    <p>Method: {{randomMethod()}}</p>
+    <p>Method: {{randomMethod()}}</p>
+</div>
+<script type="module">
+    import { createApp, computed } from '../js/vue.esm-browser.js'
+    createApp({
+        setup() {
+            const random = computed(() => {
+                return Math.floor(Math.random() * 10);
+            })
+            const randomMethod = () => {
+                return Math.floor(Math.random() * 10);
+            }
+            return {
+                random, randomMethod
+            }
+        }
+    })
+        .mount('#app')
+</script>
+</body>
+
+</html>

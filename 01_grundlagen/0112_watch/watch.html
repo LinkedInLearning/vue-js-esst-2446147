@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<div id="app">
+    <p>
+        Stell deine Ja-/Nein-Frage
+        <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+<script type="module">
+    import { createApp, ref, watch } from '../js/vue.esm-browser.js'
+    createApp({
+        setup() {
+            const question = ref('')
+            const answer = ref('Fragen brauchen Fragezeichen ;-)')
+            watch(question, async (newQuestion) => {
+                if (newQuestion.indexOf('?') > -1) {
+                    answer.value = 'Hmm ... '
+                    try {
+                        const res = await fetch('https://yesno.wtf/api')
+                        answer.value = (await res.json()).answer
+                        if (answer.value == 'no') {
+                            answer.value = 'nein'
+                        } else {
+                            answer.value = 'ja'
+                        }
+                    } catch (error) {
+                        answer.value = 'API nicht erreichbar ' + error
+                    }
+                }
+            })
+            return {
+                question, answer
+            }
+        }
+    })
+        .mount('#app')
+</script>
+</body>
+
+</html>

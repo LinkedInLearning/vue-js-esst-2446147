@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <input @keyup.enter="enter">
+        <p>{{info}}</p>
+    </div>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const info = ref('')
+                function enter() {
+                    info.value = 'enter gedrückt'
+                }
+                return {
+                    info, enter
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

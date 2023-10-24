@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click.right.prevent="displayInfo('rechts')" @click.left="displayInfo('links')">
+            Linke oder rechte Maustaste</button>
+        <p>{{info}}</p>
+    </div>
+
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const info = ref('')
+                function displayInfo(text) {
+                    info.value = text
+                }
+                return {
+                    info, displayInfo
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

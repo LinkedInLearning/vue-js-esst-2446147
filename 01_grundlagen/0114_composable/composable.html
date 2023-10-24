@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<div id="app">
+    <p v-for="todo in todos">{{todo.id}}: {{todo.title}}</p>
+</div>
+
+<script type="module">
+    import { createApp, ref } from '../js/vue.esm-browser.js'
+    import useApi from './useComposable.js'
+    createApp({
+        setup() {
+            const { todos, getAll: getIt } = useApi()
+            getIt()
+            return {
+                todos, getIt
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+
+</html>

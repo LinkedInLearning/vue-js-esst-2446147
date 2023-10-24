@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <p v-once>{{ message}}</p>
+        <button v-on:click="change">ändern!</button>
+    </div>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const message = ref('Ein für alle mal festgefahren')
+                const change = () => {
+                    message.value = 'Wind of Change'
+                }
+                return {
+                    message, change
+                }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

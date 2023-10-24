@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<div id="app">
+    <input v-model="message">
+    <p>
+        {{message}}
+    </p>
+    <button @click="increment">Klick mal</button>
+    <p>{{ count }} mal geklickt</p>
+    <p>Umgekehrt: {{reversed}}</p>
+    <my-component></my-component>
+</div>
+
+<script type="module">
+    import { createApp, ref, computed, watch, onMounted } from '../js/vue.esm-browser.js'
+    import MyComponent from './MyComponent.js'
+    createApp({
+        components: {
+            MyComponent
+        },
+        setup() {
+            const message = ref('Hallo vue')
+            const count = ref(0)
+            const increment = () => {
+                count.value++
+            }
+            const reversed = computed(() => {
+                return message.value.split('').reverse().join('')
+            })
+            watch(message, (val, oldVal) => {
+                console.log(`ursprünglich: ${oldVal}, jetzt: ${val}`)
+            })
+            onMounted(() => {
+                console.log(`mounted`)
+            })
+            return {
+                message, count, increment, reversed
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+
+</html>

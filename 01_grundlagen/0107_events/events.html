@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="displayInfo">displayInfo</button>
+        <button @click="displayMoreInfo('Übrigens', $event)">displayMoreInfo</button>
+        <p>infos {{infos}}</p>
+        <p>MoreInfos {{moreInfos}}</p>
+
+        <a href="https://linkedin.com" @click.prevent>Link</a>
+    </div>
+
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const infos = ref('')
+                const moreInfos = ref('')
+                function displayInfo(event) {
+                    infos.value = event.target.tagName
+                }
+                function displayMoreInfo(text, event) {
+                    moreInfos.value = `${text} ${event.target.tagName}`
+                }
+                return {
+                    displayInfo, infos, displayMoreInfo, moreInfos
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

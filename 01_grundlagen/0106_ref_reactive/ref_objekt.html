@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<div id="app">
+    <p>{{person.prename}} {{person.name}}</p>
+</div>
+
+<script type="module">
+    import { createApp, ref } from '../js/vue.esm-browser.js'
+    createApp({
+        setup() {
+            const person = ref({
+                prename: 'Albert',
+                name: 'Albatros'
+            })
+            person.value.prename = 'Alberto'
+            return {
+                person
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+
+</html>

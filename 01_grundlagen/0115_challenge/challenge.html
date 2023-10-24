@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>ToDo-Liste</h1>
+        <!-- Neue Aufgabe hinzufügen, wenn durch Enter abgesendet-->
+        <input placeholder="Neue Aufgabe hinzufügen">
+        <!--Liste der Aufgaben -->
+        <ul>
+            <li>
+                <!-- Checkbox zum Abhaken bei Erledigt-->
+                <input type="checkbox">
+                <!-- Klick auf Button zum Löschen -->
+                <button>Löschen</button>
+            </li>
+        </ul>
+        <!-- Anzahl der übrig bleibenden Aufgaben -->
+        <p>Noch zu tun: XX Aufgabe</p>
+    </div>
+
+
+    <script type="module">
+        import { createApp, ref, reactive, computed, onMounted, watch } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                //ref für neue Aufgabe, reactive für alle Aufgaben
+
+
+                // Tasks beim Mounten von Local storage laden
+                // Code zum Arbeiten mit localStorage kann genutzt werden
+
+                // const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+                // if (savedTasks) {
+                //     tasks.push(...savedTasks);
+                // }
+
+
+                // Bei Änderungen an den Tasks diese im Local Storage speichern
+
+                // localStorage.setItem('tasks', JSON.stringify(tasks))
+
+
+
+            },
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>

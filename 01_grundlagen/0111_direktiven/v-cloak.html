@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in recipes" v-cloak>
+                Name: {{item.name}}, wichtigste Zutat: {{item.ingredient}}
+            </li>
+        </ul>
+
+    </div>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const recipes = ref(
+                    [
+                        {
+                            id: 1,
+                            name: 'Gaspacho',
+                            ingredient: 'Tomate'
+                        },
+                        {
+                            id: 2,
+                            name: 'Hummus',
+                            ingredient: 'Kichererbsen'
+                        }
+                    ]
+                )
+                return {
+                    recipes
+                }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

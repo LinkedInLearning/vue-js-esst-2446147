@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in recipes">
+                Name: {{item.name}}, wichtigste Zutat: {{item.ingredient}}
+            </li>
+        </ul>
+        <ul>
+            <!-- Destructering geht-->
+            <li v-for="{name, ingredient} in recipes">
+                {{name}}: {{ingredient}}
+            </li>
+        </ul>
+        <ul>
+            <!-- zusätzlich mit Index -->
+            <li v-for="({name, ingredient}, index) in recipes">
+                {{index}} - {{name}}: {{ingredient}}
+            </li>
+        </ul>
+        <ul>
+            <!-- zusätzlich mit Key -->
+            <li v-for="(item, index) in recipes" :key="item.id">
+                {{index}} - {{item.name}}: {{item.ingredient}}
+            </li>
+        </ul>
+    </div>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const recipes = ref(
+                    [
+                        {
+                            id: 1,
+                            name: 'Gaspacho',
+                            ingredient: 'Tomate'
+                        },
+                        {
+                            id: 2,
+                            name: 'Hummus',
+                            ingredient: 'Kichererbsen'
+                        }
+                    ]
+                )
+                return {
+                    recipes
+                }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

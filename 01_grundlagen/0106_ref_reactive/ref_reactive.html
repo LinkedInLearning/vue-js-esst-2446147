@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ref vs reactive</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="increment1">hochzählen</button>
+        <p>Unser erster Zähler: {{ state1 }}</p>
+        <button @click="increment2">hochzählen</button>
+        <p>Unser zweiter Zähler: {{ state2.count }}</p>
+    </div>
+    <script type="module">
+        import { createApp, ref, reactive } from '../js/vue.esm-browser.js'
+        createApp({
+
+            setup() {
+                const state1 = ref(0)
+                const increment1 = () => {
+                    state1.value++
+                }
+
+                const state2 = reactive({
+                    count: 0
+                })
+                const increment2 = () => {
+                    state2.count++
+                }
+                return {
+                    state1, state2, increment1, increment2
+                }
+
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
