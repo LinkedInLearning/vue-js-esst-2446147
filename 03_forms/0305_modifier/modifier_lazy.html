@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>Nachricht: {{ message }}</p>
+        <input v-model="message">
+
+        <p>Nachricht mit lazy: {{ message2 }}</p>
+        <input v-model.lazy="message2">
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const message = ref('')
+                const message2 = ref('')
+                return {
+                    message, message2
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

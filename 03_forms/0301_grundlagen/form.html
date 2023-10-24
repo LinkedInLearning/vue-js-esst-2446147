@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="message" placeholder="schreib was" value="Hallo aus HTML">
+        <p>Nachricht: {{ message }}</p>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const message = ref('Hallo aus Vue')
+                return {
+                    message
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

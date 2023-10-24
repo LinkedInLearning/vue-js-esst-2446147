@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Form Validation</h1>
+        <form @submit.prevent="submitForm" novalidate>
+            <div>
+                <label for="name">Name:</label>
+                <input v-model.trim="form.name" id="name">
+                <p v-if="!nameIsValid">Das Feld muss ausgefüllt werden</p>
+            </div>
+
+            <div>
+                <label for="email">E-Mail:</label>
+                <input v-model.trim="form.email" id="email">
+                <p v-if="!emailIsValid">Bitte geben Sie eine gültige E-Mail-Adresse ein</p>
+            </div>
+
+            <div>
+                <button type="submit">Absenden</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, computed } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const form = ref({
+                    name: null,
+                    email: null
+                })
+
+
+                const nameIsValid = computed(() => {
+                    return !!form.value.name
+                })
+
+
+                const emailIsValid = computed(() => {
+                    // einfache E-Mail-Überprüfung mit einem regulären Ausdruck, in echt müsste man da einen besseren Ausdruck nehmen
+                    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    return emailPattern.test(form.value.email);
+                })
+
+
+                const formIsValid = computed(() => {
+                    return nameIsValid.value && emailIsValid.value
+                })
+
+                const submitForm = () => {
+                    if (formIsValid.value) {
+                        console.log('abgesendet', form)
+                    } else {
+                        console.log('Ungültig')
+                    }
+                }
+
+                return {
+                    form, submitForm, formIsValid, nameIsValid, emailIsValid
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

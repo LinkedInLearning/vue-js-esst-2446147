@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+    <style>
+        .primary {
+            background-color: lightblue;
+        }
+
+        .secondary {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Komponenten</h1>
+
+        <simple-button type="secondary">
+            <template #prefix>+</template>
+            noch mal klicken
+        </simple-button>
+    </div>
+
+    <!-- Template  SimpleButton -->
+    <script type="text/x-template" id="simple-button-template">
+        <button :class="type">
+           <span><slot name="prefix"></slot></span>
+           <slot></slot>
+        </button>
+    </script>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js';
+        const SimpleButton = {
+            template: '#simple-button-template',
+            props: {
+                type: { type: String, default: 'primary' }
+            }
+
+        }
+        createApp({
+            components: {
+                SimpleButton
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

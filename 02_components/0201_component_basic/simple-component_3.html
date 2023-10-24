@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Komponenten</h1>
+        <simple-button></simple-button>
+        <simple-button></simple-button>
+    </div>
+
+    <!-- Template SimpleButton -->
+    <script type="text/x-template" id="simple-button-template">
+        <button @click="count++">Klick mich: {{count}}</button>
+    </script>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js';
+        const SimpleButton = {
+            template: '#simple-button-template',
+            setup() {
+                const count = ref(0)
+                return {
+                    count
+                }
+            }
+        }
+        createApp({
+            components: {
+                SimpleButton
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

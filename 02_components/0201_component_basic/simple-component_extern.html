@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Komponenten</h1>
+        <simple-button></simple-button>
+        <simple-button></simple-button>
+    </div>
+
+    <script type="module">
+        import SimpleButton from './SimpleButton.js'
+        import { createApp, ref } from '../js/vue.esm-browser.js';
+        createApp({
+            components: {
+                SimpleButton
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

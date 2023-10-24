@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Events</title>
+</head>
+
+<body>
+    <div id="app">
+        <article :style="{ fontSize: actualFontSize + 'em' }">
+            <h1>Lorem, ipsum.</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta maxime aliquam veniam maiores voluptate
+                pariatur sunt, quasi ut? Cupiditate, eius.</p>
+            <h2>lorem ipsum dolor</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia ipsam, facere quas exercitationem nihil
+                ducimus? Quisquam cum nam ducimus ea.</p>
+            <change-text-size :title="title" @enlarge-text="actualFontSize += 0.2"
+                @decrease-text="actualFontSize -= 0.2"></change-text-size>
+
+        </article>
+    </div>
+    <script type="text/x-template" id="change-text-size-template">
+    <div>
+        <h4>{{ title }}</h4>
+        <button @click="$emit('enlarge-text')">Schrift vergrößern</button>
+        <button @click="$emit('decrease-text')">Schrift verkleinern</button>
+    </div> 
+   </script>
+
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js';
+        const ChangeTextSize = {
+            props: ['title'],
+            emits: ['enlarge-text', 'decrease-text'],
+            template: '#change-text-size-template'
+        }
+
+        createApp({
+            components: {
+                ChangeTextSize
+            },
+            setup() {
+                const title = ref('Schriftgröße verändern')
+                const actualFontSize = ref(1)
+                return {
+                    title, actualFontSize
+                }
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

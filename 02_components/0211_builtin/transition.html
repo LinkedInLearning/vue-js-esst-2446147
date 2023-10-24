@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.5s;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="toggleElement">Element ein-/ausblenden</button>
+        <transition name="fade" mode="out-in">
+            <p v-if="showElement" v-text="'Das ist der Inhalt'"></p>
+        </transition>
+    </div>
+
+    <script type="module">
+        import {createApp, ref} from '../js/vue.esm-browser.js'    
+        createApp({
+            setup() {
+                const showElement = ref(false)
+                const toggleElement = () => {
+                    showElement.value = !showElement.value;
+                }
+                return {
+                    showElement,
+                    toggleElement,
+
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

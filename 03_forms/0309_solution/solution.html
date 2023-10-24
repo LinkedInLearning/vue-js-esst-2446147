@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Form Validation</h1>
+        <form @submit.prevent="submitForm" novalidate>
+            <div>
+                <label for="name">Name:</label>
+                <input v-model.trim="form.name" id="name">
+                <p v-if="!nameIsValid">Das Feld muss ausgefüllt werden</p>
+            </div>
+
+            <!-- <div>
+                <label for="number">Zahl:</label>
+                <input v-model.number="form.number" id="number">
+                <p v-if="!numberIsValid">Bitte wählen Sie eine Zahl zwischen 1 und 10</p>
+            </div> -->
+
+            <div>
+                <label for="number">Zahl:</label>
+                <input type="number" v-model="form.number" id="number">
+                <p v-if="!numberIsValid">Bitte wählen Sie eine Zahl zwischen 1 und 10</p>
+            </div>
+
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { createApp, ref, computed } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const form = ref({
+                    name: null,
+                    number: null
+                })
+
+
+                const nameIsValid = computed(() => {
+                    return !!form.value.name
+                })
+                const numberIsValid = computed(() => {
+                    return typeof form.value.number === 'number' && form.value.number > 0 && form.value.number <= 10
+                })
+
+                const formIsValid = computed(() => {
+                    return nameIsValid.value && numberIsValid.value
+                })
+
+                const submitForm = () => {
+                    if (formIsValid.value) {
+                        console.log('abgesendet', form)
+                    } else {
+                        console.log('Ungültig')
+                    }
+                }
+
+                return {
+                    form, submitForm, formIsValid, nameIsValid, numberIsValid
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

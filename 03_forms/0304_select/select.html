@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>Ausgewählt: <span v-text="fruit"></span></div>
+        <label for="fruit">Frucht wählen</label>
+        <select v-model="fruit" id="fruit">
+            <option value="" disabled>Bitte wählen Sie</option>
+            <option>Apfel</option>
+            <option>Birne</option>
+            <option>Cassis</option>
+            <option>Dattel</option>
+        </select>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const fruit = ref('')
+                return {
+                    fruit
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>Datentyp: {{ type1 }}</p>
+        <input v-model="number">
+
+        <p>Datentyp mit .number: {{ type2 }}</p>
+        <input v-model.number="number2">
+    </div>
+
+    <script type="module">
+        import { createApp, ref, computed } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const number = ref(0)
+                const number2 = ref(0)
+                const type1 = computed(() => {
+                    return typeof number.value
+                })
+                const type2 = computed(() => {
+                    return typeof number2.value
+                })
+                return {
+                    number, number2, type1, type2
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

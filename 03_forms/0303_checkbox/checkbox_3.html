@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" id="red" value="rot" v-model="colors">
+        <label for="red">rot</label>
+        <input type="checkbox" id="green" value="grün" v-model="colors">
+        <label for="green">grün</label>
+        <input type="checkbox" id="blue" value="blau" v-model="colors">
+        <label for="blue">blau</label>
+        <p>gewählt: {{colors}}</p>
+    </div>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        createApp({
+            setup() {
+                const colors = ref([])
+                return {
+                    colors
+                }
+            }
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

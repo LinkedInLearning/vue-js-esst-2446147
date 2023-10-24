@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Komponenten</h1>
+        <ingredient-list></ingredient-list>
+    </div>
+
+    <!-- Template IngredientList -->
+    <script type="text/x-template" id="ingredient-list-template">
+        <ul>
+            <ingredient-list-item v-for="ingredient in ingredients" :name="ingredient"></ingredient-list-item> 
+        </ul>
+    </script>
+
+    <!-- Template IngredientListItem -->
+    <script type="text/x-template" id="ingredient-list-item-template">
+        <li>{{name}}</li>
+    </script>
+
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js';
+        const IngredientListItem = {
+            template: '#ingredient-list-item-template',
+            props: ['name']
+        }
+
+        const IngredientList = {
+            template: '#ingredient-list-template',
+            components: {
+                IngredientListItem
+            },
+            setup() {
+                const ingredients = ref(['Tahin', 'Kreuzkümmel', 'Kichererbsen']);
+                return {
+                    ingredients
+                }
+            }
+
+        }
+        createApp({
+            components: {
+                IngredientList
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

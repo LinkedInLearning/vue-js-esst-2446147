@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+    <style>
+        .primary {
+            background-color: lightblue;
+        }
+
+        .secondary {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Komponenten</h1>
+        <simple-button text="mal klicken" type="secondary"></simple-button>
+        <simple-button text="noch mal klicken" type="primary"></simple-button>
+        <simple-button text="und noch mal"></simple-button>
+        <!-- <simple-button></simple-button> -->
+    </div>
+    <!-- Template  SimpleButton -->
+    <script type="text/x-template" id="simple-button-template">
+        <button :class="type" @click="increment">{{text}}: {{count}}</button>
+    </script>
+    <script type="module">
+        import { createApp, ref } from '../js/vue.esm-browser.js'
+        const SimpleButton = {
+            template: '#simple-button-template',
+            // props: {
+            //     text: String,
+            //     type: String
+            // },
+            props: {
+                text: { type: String, required: true },
+                type: { type: String, default: 'primary' }
+            },
+            setup() {
+                const count = ref(0)
+                function increment() {
+                    return count.value++
+                }
+                return {
+                    count, increment
+                }
+            }
+        }
+        createApp({
+            components: {
+                SimpleButton
+            },
+        })
+            .mount('#app')
+    </script>
+</body>
+
+</html>

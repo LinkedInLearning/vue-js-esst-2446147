@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>ToDo-Liste</h1>
+        <input v-model.trim="newTask" @keyup.enter="addTask" placeholder="Neue Aufgabe hinzufügen">
+        <task-list :tasks="tasks" @remove="deleteTask"></task-list>
+        <p>Noch zu tun: {{ remainingTasks }} Aufgabe(n)</p>
+    </div>
+
+
+    <script type="text/x-template" id="task-list-template">
+        <ul>
+            <li v-for="(task, index) in tasks" :key="index">
+                <input type="checkbox" v-model="task.completed">
+                {{ task.text }}
+                <button @click="$emit('remove', index)">Löschen</button>
+            </li>
+        </ul>
+    </script>
+
+    <script type="module">
+        import { createApp, ref, reactive, computed, onMounted, watch } from '../js/vue.esm-browser.js'
+        const TaskList = {
+            template: '#task-list-template',
+            props: ['tasks'],
+            emits: ['remove']
+        }
+
+        createApp({
+            components: {
+                TaskList
+            },
+            setup() {
+                const newTask = ref('')
+                const tasks = reactive([])
+
+                // Tasks vom local storage laden
+                onMounted(() => {
+                    const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+                    if (savedTasks) {
+                        tasks.push(...savedTasks)
+                    }
+                })
+
+                // Bei Änderungen diese im Local Storage speichern
+                watch(tasks, () => {
+                    localStorage.setItem('tasks', JSON.stringify(tasks))
+                })
+
+                const addTask = () => {
+                    if (newTask.value !== '') {
+                        tasks.push({ text: newTask.value, completed: false })
+                        newTask.value = ''
+                    }
+                }
+                const remainingTasks = computed(() => {
+                    return tasks.filter(task => !task.completed).length
+                })
+                const deleteTask = (index) => {
+                    tasks.splice(index, 1)
+                }
+
+                return {
+                    newTask,
+                    tasks,
+                    addTask,
+                    deleteTask,
+                    remainingTasks,
+                }
+            },
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>
