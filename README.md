@@ -1,47 +1,26 @@
-# [DE-Kursname hier eintragen]
+# Vue.js Grundkurs
 
-Dies ist das Repository für den **LinkedIn Learning** Kurs `[COURSENAME]`. Den gesamten Kurs finden Sie auf [LinkedIn Learning][lil-course-url].
+Dies ist das Repository für den **LinkedIn Learning** Kurs `Vue.js Grundkurs`. Den gesamten Kurs finden Sie auf [LinkedIn Learning][lil-course-url].
 
 ![COURSENAME][lil-thumbnail-url] 
 
-[COURSEDESCRIPTION]
+Haben Sie ein schon ein JavaScript-Framework gefunden, das Ihren Anforderungen entspricht? Das elegant und einstiegsfreundlich ist und gleichzeitig auch im professionellen Umfeld genutzt wird?  Wenn nicht, sollten Sie sich mit Vue.js beschäftigen: Folgen Sie in diesem LinkedIn Learning-Kurs der erfahrenen Webprogrammiererin Florence Maurice, die Ihnen das Open-Source-Framework Schritt für Schritt nahebringt. Sie lernen seine vielen Vorteile kennen und tauchen auch in das Komponentensystem ein, das Ihnen hilft, modularen, wiederverwendbaren Code zu erstellen, der Ihren Front-End-Code aufräumen und vereinfachen kann. <br><br>
 
-## Anleitung
+Idealerweise sollten Sie über grundlegende JavaScript-Kenntnisse verfügen und wissen, wie HTML und CSS funktionieren. Mit Hilfe von Challenge/Solution-Einheiten am Ende der Kapitel können Sie das Erlernte immer wieder ausprobieren und Ihre Lösungen mit der Ihrer Trainerin vergleichen.
 
-Dieses Repository hat Branches für jedes Video im Kurs. Verwenden Sie das Ausklappmenü "Branch: ..." in GitHub um zwischen den unterschiedlichen Branches hin und her zu wechseln bzw. um bei einem spezifischen Status einzusteigen. Oder Sie fügen `/tree/BRANCH_NAME` der URL hinzu um direkt in den gewünschten Branch zu wechseln.
-
-## Branches
-
-Die Git Branches sind passend zu den Videos im Kurs strukturiert. Die Namenskonvention lautet `Kapitel#_Video#`. Der Branch `02_03` beinhaltet zum Beispiel die Übungen für das dritte Video im zweiten Kapitel. 
-Einige Branches haben einen Anfangsstatus (`b`) für "beginning" und einen Endstatus (`e`). Der Branch mit dem `e` am Ende beinhaltet in diesem Fall stets den Code der am Ende des Videos zu sehen ist. Der `master` Branch beinhaltet den initialen Quellcode und wird nicht für die Übungen innerhalb des Kurses genutzt.
-
-Wenn Sie von einem Branch nach Änderungen zum nächsten Branch wechseln, erhalten Sie möglicherweise die folgende Meldung:
-
-```
-error: Your local changes to the following files would be overwritten by checkout:        [files]
-Please commit your changes or stash them before you switch branches.
-Aborting
-```
-
-Dieses Problem lösen Sie wie folgt:
-    Add changes to git using this command: git add .
-    Commit changes using this command: git commit -m "some message"
 
 ## Installation
 
-1. Um diese Übungsdateien nutzen zu können, müssen Sie folgendes installiert haben:
-   - [list of requirements for course]
-2. Klonen Sie das Repository in Ihre lokale Maschine unter Verwendung von terminal (Mac), CMD (Windows) oder ein anderes Werkzeug mit grafischer Bedienoberfläche wie SourceTree.
-3. [Course-specific instructions]
+1. Klonen Sie das Repository in Ihre lokale Maschine unter Verwendung von terminal (Mac), CMD (Windows) oder ein anderes Werkzeug mit grafischer Bedienoberfläche wie SourceTree.
+2. Die Übungsdateien sind in Kapiteln im Hauptverzeichnis zu finden und korrespondieren mit der Filmstruktur.
 
-### Autor
+## Autorin
+**Florence Maurice**
 
-**[Name hier eintragen]**
+_Autorin und Trainerin_
 
-_[Berufsbezeichnung hier eintragen]_
-
-Sehen Sie sich andere Kurse des Autors auf [LinkedIn Learning](https://www.linkedin.com/learning/instructors/name_des_autors) an.
+Sehen Sie sich andere Kurse der Autorin auf [LinkedIn Learning](https://www.linkedin.com/learning/instructors/florence-maurice) an.
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
-[lil-course-url]: https://www.linkedin.com
-[lil-thumbnail-url]: https:
+[lil-course-url]: https://www.linkedin.com/learning/vue-js-grundkurs
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/D560DAQH1OH2dwbLebg/learning-public-crop_675_1200/0/1702294274505?e=2147483647&v=beta&t=CWwsk_kGSG5m1P6fbaBgDkYoHM2zxMN2OATG47aN_Zg
